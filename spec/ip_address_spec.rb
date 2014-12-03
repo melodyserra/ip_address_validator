@@ -1,5 +1,8 @@
 require 'spec_helper'
 require_relative '../lib/ip_address'
+# the ruby file you are trying to test
+
+#point of the assignment is to pass these three tests, validating four numbers
 
 describe "#valid_ip?" do
   it "returns true if input is between '0.0.0.0' and '255.255.255.255'" do
@@ -19,5 +22,16 @@ describe "#valid_ip?" do
   # returns false if there are less than 4 sets of numbers
 
   # returns false if there are more than 4 sets of numbers
-  
+  it "returns false if the input is not a string" do
+    expect(valid_ip?(127)).to be false
+  end
+
+  it "returns false if there are less than 4 sets of numbers" do
+    expect(valid_ip?("127.0.3")).to be false
+  end
+
+  it "returns false if there are more than 4 sets of numbers" do
+    expect(valid_ip?("127.0.0.0.5")).to be false
+  end
+
 end
